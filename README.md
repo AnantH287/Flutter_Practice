@@ -1,4 +1,4 @@
-# Flutter Practice Projects
+# Flutter & Node.js Practice Projects
 
 This repository contains my weekend Flutter practice projects.  
 Each folder under `lib/Screens` represents a small app or UI I built while learning Flutter.
