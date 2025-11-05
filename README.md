@@ -7,6 +7,7 @@ Each folder under `lib/Screens` represents a small app or UI I built while learn
 - Lat and Long Into Address with Future Builder
 - Battery Percentage
 - What's app UI
+- Counter task with help of Provider
   
 
 ## 🛠️ Technologies
