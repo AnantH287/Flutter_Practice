@@ -8,6 +8,7 @@ Each folder under `lib/Screens` represents a small app or UI I built while learn
 - Battery Percentage
 - What's app UI
 - Counter task with help of Provider
+- Mini Student Form 
   
 
 ## 🛠️ Technologies
