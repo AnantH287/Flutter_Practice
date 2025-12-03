@@ -4,6 +4,7 @@ This repository contains my weekend Flutter practice projects.
 Each folder under `lib/Screens` represents a small app or UI I built while learning Flutter.
 
 ## 📱 List of Projects
+- JWT Authentication — I uploaded the entire folder structure for that (Flutter + Node.js)
 - Lat and Long Into Address with Future Builder
 - Battery Percentage
 - What's app UI
