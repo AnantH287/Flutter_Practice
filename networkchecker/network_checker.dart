@@ -45,7 +45,7 @@ class _NetworkCheckerState extends State<NetworkChecker> {
 
     checkConnectionState();
 
-    _networkFuture = checkNetWorker(); // ✅ called once
+    _networkFuture = checkNetWorker();
 
     Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {
 
