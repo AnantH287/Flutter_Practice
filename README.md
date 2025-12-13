@@ -10,7 +10,7 @@ Each folder under `lib/Screens` represents a small app or UI I built while learn
 - What's app UI
 - Counter task with help of Provider
 - Mini Student Form
-- Network checker is user online or offline
+- Network checker is user online or offline AND the filter option with SearchBar
   
 
 ## 🛠️ Technologies
