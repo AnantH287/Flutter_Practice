@@ -18,6 +18,7 @@ class _NetworkCheckerState extends State<NetworkChecker> {
   //
   // })
   bool inOnline = true;
+  late Future<List<Map<String, dynamic>>> _networkFuture;
 
   // @override
   // void initState() {
@@ -44,6 +45,8 @@ class _NetworkCheckerState extends State<NetworkChecker> {
 
     checkConnectionState();
 
+    _networkFuture = checkNetWorker(); // ✅ called once
+
     Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {
 
       final bool isDisconnected = result.contains(ConnectivityResult.none);
@@ -53,7 +56,7 @@ class _NetworkCheckerState extends State<NetworkChecker> {
       });
 
       if (!isDisconnected) {
-        checkNetWorker();
+       _networkFuture = checkNetWorker();
       }
     });
   }
@@ -82,6 +85,23 @@ class _NetworkCheckerState extends State<NetworkChecker> {
     }
   }
 
+  final TextEditingController searchData = TextEditingController();
+
+
+  List<Map<String,dynamic>> getFilterFunction(
+      List<Map<String,dynamic>> data){
+
+    final search = searchData.text.toLowerCase();
+
+   return data.where((info){
+      final id = info['id'].toString().toLowerCase();
+      final text = info['title'].toString().toLowerCase();
+      
+      return search.isEmpty || id.contains(search) || text.contains(search);
+    }).toList();
+  }
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,9 +123,34 @@ class _NetworkCheckerState extends State<NetworkChecker> {
 
           Column(
             children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: SearchBar(
+                  controller: searchData,
+                  hintText: "Filter the data",
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(
+                        color: Colors.black,
+                        width: 1.5,
+                      ),
+                    )
+                  ),
+                  leading: Icon(Icons.smart_display,color: Colors.red,),
+                  trailing: [
+                    Icon(Icons.search,color: Colors.black,)
+                  ],
+                  onChanged: (String value){
+                    setState(() {
+                      searchData.text = value;
+                    });
+                  },
+                ),
+              ),
               Expanded(
                 child: FutureBuilder<List<Map<String,dynamic>>>(
-                  future: checkNetWorker(),
+                  future: _networkFuture,
                   builder: (context, snapshot){
                     if(snapshot.hasError){
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snapshot.error.toString())));
@@ -113,10 +158,12 @@ class _NetworkCheckerState extends State<NetworkChecker> {
                       return   Center(child: CircularProgressIndicator(),);
                     }
                     final data = snapshot.data;
+                    final filterData = getFilterFunction(data ?? []);
                     return ListView.builder(
-                        itemCount: data!.length,
+                        itemCount: filterData!.length,
                         itemBuilder: (context, index){
-                          final items  = data[index];
+                          final items  = filterData[index];
+                          // print("ttttttttt ${data[index].runtimeType}");
                           return Padding(
                             padding: EdgeInsets.all(10),
                             child: Row(
@@ -171,7 +218,6 @@ class _NetworkCheckerState extends State<NetworkChecker> {
                       ],
                     ),
                   )
-
                 )
             )
           ]
