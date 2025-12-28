@@ -11,6 +11,7 @@ Each folder under `lib/Screens` represents a small app or UI I built while learn
 - Counter task with help of Provider
 - Mini Student Form
 - Network checker is user online or offline AND the filter option with SearchBar
+- I have Practiced List View Builder with Dummy Data and it does filter the Data (New_Task)
   
 
 ## 🛠️ Technologies
