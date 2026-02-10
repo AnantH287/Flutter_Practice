@@ -11,8 +11,8 @@ Each folder under `lib/Screens` represents a small app or UI I built while learn
 - Counter task with help of Provider
 - Mini Student Form
 - Network checker is user online or offline AND the filter option with SearchBar
-- I have Practiced the List View Builder with Dummy Data and user can filter the data (New_Task)
-  
+- I have Practiced the List View Builder with Dummy Data and user can filter the data (New_Task).
+- I have shown some product list on the product list screen , it shows the products list whether the user is online or offline. File Name is ( Product List ) this file also contains the BLOC structure. 
 
 ## 🛠️ Technologies
 - Flutter (Dart)
